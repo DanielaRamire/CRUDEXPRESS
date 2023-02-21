@@ -15,7 +15,6 @@ client.connect((err) => {
         const collection = db.collection('<collection>');
 
         // Aquí puedes realizar operaciones en la colección
-
         client.close();
     }
 });
