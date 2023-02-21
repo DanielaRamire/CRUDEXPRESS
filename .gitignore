@@ -1,0 +1,27 @@
+# Dependencias
+node_modules/
+
+# Archivos generados por el sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+*.log
+
+# Archivos de configuración
+config.js
+config.json
+
+# Archivos temporales
+*.tmp
+*.swp
+*.swo
+
+# Archivos de construcción
+build/
+dist/
+out/
+target/
+
+#Archivos que no necesito subir por ahora
+src/

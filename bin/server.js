@@ -1,12 +1,12 @@
-const http = require('http');
-const app = require('../app');
+// const http = require('http');
+// const app = require('../app');
 
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
 
 
-server.listen(3000);
+// server.listen(3000);
 
-server.on('listening', () => {
-    console.log('servidor 3000');
-});
+// server.on('listening', () => {
+//     console.log('servidor 3000');
+// });
