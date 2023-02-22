@@ -1,15 +1,13 @@
-// const express = require('express');
+const express = require('express');
 
-// const app = express();
+const app = express();
 // const port = process.env.Port || 3000;
 
-// //configuracion Express
+//configuracion Express
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// app.get('/',(req, res) => {
-//     res.send('OK');
-// });
+app.use(require('./routes'));
 
-// module.exports = app;
+module.exports = app;
