@@ -21,5 +21,14 @@ router.post('/', async (req, res) => {
 });
 
 
+router.delete('/:movieId', async (req, res) => {
+    const movieId = req.params.movieId;
+    try {
+        const movie = await Movie.findByIdAndDelete(movieId);
+        res.json(movie);
+    } catch (error) {
+        res.status(500).json({error:'Ocurrió un error agregando'});
+    }
+})
 
 module.exports = router;

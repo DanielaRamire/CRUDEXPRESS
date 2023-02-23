@@ -35,7 +35,6 @@ describe('pruebas sobre la api de movie', ()=>{
 
     });
 
-
     describe('POST /api/movie', () => {
 
         const newMovie = { 
@@ -55,8 +54,6 @@ describe('pruebas sobre la api de movie', ()=>{
             response = await request(app)
                 .post('/api/movie')
                 .send(newMovie);
-            console.log(response.body);
-            console.log(response.body.mov_title);
         });
 
         afterEach(async ()=> {
@@ -72,8 +69,36 @@ describe('pruebas sobre la api de movie', ()=>{
             expect(response.body._id).toBeDefined();
             expect(response.body.mov_title).toBe(newMovie.mov_title);
         });
-
     });
 
 
+
+
+    describe('DELETE /api/movie', ()=>{
+
+        let movie;
+        let response;
+        beforeEach(async ()=>{
+            movie = await Movie.create({mov_id: '1', mov_title: 'MoviePrueba', mov_year: '1994',
+                mov_time: '120', mov_lang: 'ES', mov_dt_rel: '1994-01-15', mov_rel_country: 'PruebaPais',});
+
+            response = await request(app).delete(`/api/movie/${movie._id}`).send();
+
+        });
+
+        afterEach(async ()=> {
+            await Movie.deleteMany({mov_title: 'MoviePrueba'});
+        });
+
+        it('la ruta funciona', async () => {
+            expect(response.status).toBe(200);
+            expect(response.headers['content-type']).toContain('json');
+        });
+
+        it('Borra Correctamente', async ()=> {
+            expect(response.body._id).toBeDefined();
+            const foundMovie = await Movie.findById(movie._id);
+            expect(foundMovie).toBeNull();
+        });
+    });
 });
