@@ -64,4 +64,53 @@ describe('pruebas sobre la api de movie', ()=>{
     });
 
 
+    describe('PUT/api/movie', () => {
+
+         let movie;
+         beforeEach(async () => {
+               tripe = await movie.create({ mov_title: 'test movie', 
+               mov_year: '2028',
+               mov_time: '30',
+               mov_lang: '3',
+               mov_dt_rel: '1996-01-15',
+               mov_rel_country:'cali' });
+
+         });
+
+
+
+         afterEac(async () => {
+            await movie.findByIdAndDelete(movie._id);
+         });
+
+         it('la ruta funciona', async () => {
+            const response = await request(app).put('/api/movie/${trip._id}').send({
+
+                name: 'movie updated'
+            });
+
+            expect(response.status).toBe(200);
+            expect(response.headers['content-type']).toContain(`json`);
+         })
+
+
+         it('se actualiza correctamente', async () => {
+          
+
+            const response = await request(app).put('/api/movie/${trip._id}').send({
+
+                name: 'movie updated'
+            });
+
+            expect(response.body._id).toBeDefined();
+            expect(response.body.name).toBe('movie updated');
+
+
+         });
+
+
+
+    });
+
+
 });
