@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const actor = new Schema ({
-    act_id: { type: Schema.Types.ObjectId, required: true, unique: true },
+    act_id: { type:Number, required: true, unique: true },
     act_fname: {type:String, maxlength: 20},
     act_lname: {type:String, maxlength: 20},
     act_gender: {type:String, maxlength: 1},

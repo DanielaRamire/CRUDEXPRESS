@@ -1,6 +1,7 @@
 require('dotenv').config()
 const request = require('supertest');
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', false);
 const app = require('../../app');
 
 describe('pruebas sobre la api de movie', ()=>{
