@@ -11,4 +11,13 @@ router.get('/', async (req,res)=>{
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const newMovie = await Movie.create(req.body);
+        res.json(newMovie);
+    } catch (error) {
+        res.status(500).json({error:'Ocurrió un error'});
+    }
+})
+
 module.exports = router;
