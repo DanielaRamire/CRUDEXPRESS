@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 const app = require('../../app');
 
-describe('pruebas sobre la api de movie', ()=>{
+describe('pruebas sobre la api genres', ()=>{
 
     beforeAll(async ()=>{
         await mongoose.connect(process.env.MONGODB_URI);
@@ -14,25 +14,19 @@ describe('pruebas sobre la api de movie', ()=>{
         await mongoose.disconnect();
     });
 
-
-    describe('GET /api/movie', ()=>{
+    describe('GET /api/genres', ()=>{
 
         let response;
         beforeEach(async ()=>{
-            response = await request(app).get('/api/movie').send();
+            response = await request(app).get('/api/genres').send();
         })
-
 
         it('la ruta funciona', async ()=>{
             expect(response.status).toBe(200);
             expect(response.header['content-type']).toContain('json');
         });
-
-        it('Retornar array con todas las películas', async ()=>{
+        it('Retornar array con todos los generos', async ()=>{
             expect(response.body).toBeInstanceOf(Array);
         })
-
     });
-
-
 });
