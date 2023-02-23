@@ -29,6 +29,26 @@ router.delete('/:movieId', async (req, res) => {
     } catch (error) {
         res.status(500).json({error:'Ocurrió un error agregando'});
     }
-})
+});
+
+
+router.put('/:movieId', async (req, res) => {
+  try {
+
+    const movieEdit = await Movie.findByIdAndUpdate(
+        req.params.tripId,
+        req.body,
+        {
+            new: true
+        }
+    );
+    res.json(movieEdit);
+    
+  } catch (error) {
+    res.status(500).json({error:'Ocurrió un error'});
+  }
+});
+
+
 
 module.exports = router;
