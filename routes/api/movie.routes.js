@@ -16,8 +16,10 @@ router.post('/', async (req, res) => {
         const newMovie = await Movie.create(req.body);
         res.json(newMovie);
     } catch (error) {
-        res.status(500).json({error:'Ocurrió un error'});
+        res.status(500).json({error:'Ocurrió un error agregando'});
     }
-})
+});
+
+
 
 module.exports = router;

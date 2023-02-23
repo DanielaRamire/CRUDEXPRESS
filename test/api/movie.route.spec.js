@@ -3,6 +3,7 @@ const request = require('supertest');
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 const app = require('../../app');
+const Movie = require('../../models/movie.model');
 
 describe('pruebas sobre la api de movie', ()=>{
 
@@ -37,27 +38,38 @@ describe('pruebas sobre la api de movie', ()=>{
 
     describe('POST /api/movie', () => {
 
-        const newMovie = { mov_id: '2',
-            mov_title: 'test movie', 
-            mov_year: '2023',
-            mov_time: '30',
-            mov_lang: '3',
+        const newMovie = { 
+            mov_id: '1',
+            mov_title: 'MoviePrueba',
+            mov_year: '1994',
+            mov_time: '120',
+            mov_lang: 'ES',
             mov_dt_rel: '1994-01-15',
-            mov_rel_country:'ciudad'
-         };
+            mov_rel_country: 'PruebaPais',
+        };
+
+        
+
+        let response;
+        beforeEach(async () => {
+            response = await request(app)
+                .post('/api/movie')
+                .send(newMovie);
+            console.log(response.body);
+            console.log(response.body.mov_title);
+        });
+
+        afterEach(async ()=> {
+            await Movie.deleteMany({mov_title: 'MoviePrueba'});
+        });
 
         it('la ruta funciona', async () => {
-              const response = await request(app).post('/api/movie').send(newMovie);
-
-              expect(response.status).toBe(200);
-              expect(response.headers['content-type']).toContain('json');
+            expect(response.status).toBe(200);
+            expect(response.headers['content-type']).toContain('json');
         });
 
         it('Se inserta correctamente', async () => {
-            const response = await request(app).post('/api/movie').send(newMovie);
-            
-
-            expect(response.body.mov_id).toBeDefined();
+            expect(response.body._id).toBeDefined();
             expect(response.body.mov_title).toBe(newMovie.mov_title);
         });
 
