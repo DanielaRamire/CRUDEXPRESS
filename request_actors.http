@@ -1,0 +1,22 @@
+###
+GET http://localhost:9000/api/movie HTTP/1.1
+
+###
+POST http://localhost:9000/api/movie HTTP/1.1
+Content-type: application/json
+
+{
+    "mov_id": 11,
+    "mov_title": "peli prueba",
+    "mov_year": 2014,
+    "mov_time": 115,
+    "mov_lang": "English",
+    "mov_dt_rel": "03-10-2014",
+    "mov_rel_country": "Reino Unido"
+}
+
+###
+PUT http://localhost:9000/api/movie HTTP/1.1
+
+###
+DELETE  http://localhost:9000/api/movie/5 HTTP/1.1
