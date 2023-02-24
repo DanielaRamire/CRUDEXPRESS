@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const mongoose = require('mongoose');
-const actor = require('../models/actor');
+const actor = require('../models/actor.model');
 mongoose.set('strictQuery', false);
 (async ()=>{
     await mongoose.connect(process.env.MONGODB_URI);
