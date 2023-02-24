@@ -71,9 +71,6 @@ describe('pruebas sobre la api de movie', ()=>{
         });
     });
 
-
-
-
     describe('DELETE /api/movie', ()=>{
 
         let movie;
@@ -101,4 +98,5 @@ describe('pruebas sobre la api de movie', ()=>{
             expect(foundMovie).toBeNull();
         });
     });
+    
 });

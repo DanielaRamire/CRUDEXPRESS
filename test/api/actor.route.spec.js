@@ -15,7 +15,6 @@ describe('pruebas sobre la api de actor', ()=>{
         await mongoose.disconnect();
     });
 
-
     describe('GET /api/actor', ()=>{
 
         let response;
@@ -34,4 +33,36 @@ describe('pruebas sobre la api de actor', ()=>{
         });
 
     });
+
+    describe('POST /api/actor', () => {
+        const newActor = { 
+            act_id: '1',
+            act_fname: 'prueba actor',
+            act_lname: 'prueba apellido',
+            act_gender: 'M'
+        };
+
+        let response;
+        beforeEach(async () => {
+            response = await request(app)
+                .post('/api/actor')
+                .send(newActor);
+        });
+
+        afterEach(async ()=> {
+            await Actor.deleteMany({act_fname: 'prueba actor'});
+        });
+
+        it('la ruta funciona', async () => {
+            expect(response.status).toBe(200);
+            expect(response.headers['content-type']).toContain('json');
+        });
+
+        it('Se inserta correctamente', async () => {
+            expect(response.body._id).toBeDefined();
+            expect(response.body.act_fname).toBe(newActor.act_fname);
+        });
+    });
+
+
 });
