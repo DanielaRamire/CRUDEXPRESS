@@ -11,4 +11,13 @@ router.get('/', async (req,res)=>{
     }
 });
 
+router.post('/', async (req, res) => {
+    try {
+        const newDirector = await Director.create(req.body);
+        res.json(newDirector);
+    } catch (error) {
+        res.status(500).json({error:'Ocurrió un error agregando'});
+    }
+});
+
 module.exports = router;

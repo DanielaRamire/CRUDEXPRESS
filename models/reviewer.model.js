@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const reviewer = new Schema ({
-    rev_id: { type: Schema.Types.ObjectId, required: true, unique: true },
+    rev_id: { type: Number, required: true, unique: true },
     rev_name: {type:String, maxlength: 30},
 },
 {
